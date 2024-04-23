@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavigationItem } from "./Navigation";
+import { NavigationItem } from "../../client/navigation/Navigation";
 import { NAV_ITEMS } from "@/lib/Navigation";
 
 const Sidebar = ({

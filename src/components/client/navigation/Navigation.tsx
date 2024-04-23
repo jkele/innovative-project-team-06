@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Navbar from "./NavBar";
-import Sidebar from "./SideBar";
+import Sidebar from "../../server/navigation/SideBar";
 import Link from "next/link";
 import { NavItem } from "@/types";
 
