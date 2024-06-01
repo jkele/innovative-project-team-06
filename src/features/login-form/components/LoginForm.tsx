@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { LoginFormInput } from "../types/login-form";
 
-export function LoginForm() {
+export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
 
   const onSubmit = (data: LoginFormInput) => {
@@ -45,4 +45,4 @@ export function LoginForm() {
       </form>
     </div>
   );
-}
+};
