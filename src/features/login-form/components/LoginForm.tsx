@@ -2,14 +2,20 @@
 
 import { useForm } from "react-hook-form";
 import { LoginFormInput } from "../types/login-form";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
 
+  const router = useRouter();
+
   const onSubmit = (data: LoginFormInput) => {
     console.log(data);
-  };
 
+    if (data.email === "test@mail.com" && data.password === "1234") {
+      router.push("/dashboard");
+    }
+  };
   return (
     <div className="my-[190px]">
       <form
