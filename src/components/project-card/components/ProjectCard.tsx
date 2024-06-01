@@ -17,7 +17,7 @@ export const ProjectCard = (properties: ProjectCardProperties) => {
         )}
       >
         <p className="font-medium">{project.title}</p>
-        <p className="text-[#054166] pl-4">
+        <p className="text-[#054166] pl-4 text-[14px]">
           {shortenDescriptionText(project.description)}
         </p>
       </div>
