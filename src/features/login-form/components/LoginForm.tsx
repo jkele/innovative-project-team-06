@@ -3,9 +3,12 @@
 import { useForm } from "react-hook-form";
 import { LoginFormInput } from "../types/login-form";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
+
+  const [loginError, setLoginError] = useState(false);
 
   const router = useRouter();
 
@@ -14,15 +17,17 @@ export const LoginForm = () => {
 
     if (data.email === "test@mail.com" && data.password === "1234") {
       router.push("/dashboard");
+    } else {
+      setLoginError(true);
     }
   };
   return (
-    <div className="my-[190px]">
+    <div className="pt-[190px]">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white h-[284px] flex flex-col px-4 gap-4"
       >
-        <div className="flex flex-col mt-10">
+        <div className="flex flex-col mt-4">
           <input
             className="text-black h-10 border-b border-[#5F8DAA]"
             type="text"
@@ -42,9 +47,14 @@ export const LoginForm = () => {
             <p className="font-medium text-[#5F8DAA]">password</p>
           </label>
         </div>
+        {loginError ? (
+          <p className="text-xs text-red-500">
+            Login unsuccessful, check email or password
+          </p>
+        ) : null}
         <button
           type="submit"
-          className="text-black mt-10 uppercase font-semibold text-[18px]"
+          className="text-black mt-4 justify-end uppercase font-semibold text-[18px]"
         >
           Log in
         </button>
