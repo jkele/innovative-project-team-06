@@ -2,6 +2,7 @@ import { useOutsideClick } from "@/hooks/use-outside-click";
 import { PunctureDetailsDialogProperties } from "../types/puncture-details-dialog";
 import { ElementRef } from "react";
 import { Close } from "@/icons/Close";
+import { Measurement } from "@/icons/Measurement";
 
 export const PunctureDetailsDialog = (
   properties: PunctureDetailsDialogProperties
@@ -30,6 +31,12 @@ export const PunctureDetailsDialog = (
           {puncture.title}
         </p>
         <p>{puncture.description}</p>
+        <div className="flex flex-col mt-10">
+          <div className="flex flex-row gap-2">
+            <Measurement className="self-center" />
+            <p>{`${puncture.width}cm X ${puncture.height}cm`}</p>
+          </div>
+        </div>
       </div>
     </dialog>
   );
