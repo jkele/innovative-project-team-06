@@ -16,7 +16,7 @@ export const ProjectInfo = (properties: ProjectInfoProperties) => {
         </div>
         <div className="flex flex-row gap-2 mt-5">
           <People className="self-center" />
-          <p className="self-center">{project?.street}</p>
+          <p className="self-center">John Doe</p>
         </div>
       </div>
     </div>
