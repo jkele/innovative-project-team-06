@@ -58,7 +58,7 @@ const Button = ({ toggle }: { toggle: () => void }): JSX.Element => {
         height="40"
         viewBox="0 0 24 24"
       >
-        <path fill="#fff" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" />
+        <path fill="#054166" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" />
       </svg>
     </button>
   ) : (
