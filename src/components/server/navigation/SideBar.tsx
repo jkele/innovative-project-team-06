@@ -12,7 +12,7 @@ const Sidebar = ({
   return (
     <>
       <div
-        className=" fixed w-full h-full overflow-hidden justify-center bg-black grid items-center left-0 z-10"
+        className=" fixed w-full h-full overflow-hidden justify-center grid items-center left-0 z-10"
         style={{
           opacity: `${isOpen ? "1" : "0"}`,
           top: ` ${isOpen ? "0" : "-100%"}`,
@@ -41,6 +41,7 @@ const Sidebar = ({
             return (
               <div
                 onClick={toggle}
+                key={index}
                 className=" p-2 rounded-md my-1 hover:bg-gray-900 cursor-pointer"
               >
                 <Link href={item.path}>
@@ -49,7 +50,7 @@ const Sidebar = ({
               </div>
             );
           })}
-          <hr/>
+          <hr />
           <div className=" text-center items-center flex text-white hover:text-indigo-400 h-12 rounded-lg cursor-pointer font-bold px-5">
             <p>Sign In</p>
           </div>

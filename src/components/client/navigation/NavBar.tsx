@@ -6,22 +6,25 @@ import { useEffect, useState } from "react";
 import { NAV_ITEMS } from "@/lib/Navigation";
 import { ImTelegram } from "react-icons/im";
 import { NavigationItem } from "./Navigation";
+import { Logo } from "@/icons/Logo";
 
 const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element => {
   return (
     <>
-      <div className="w-full h-20 sticky top-0">
+      <div className="w-full h-20 sticky top-0 bg-[#F3FAFF]">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between items-center h-full">
             <Link href="/">
-              <p>LOGO</p>
+              <Logo className="w-[185px]" />
             </Link>
             <div className="hidden md:flex gap-x-6 text-white">
               {NAV_ITEMS.map((item, index) => {
                 return <NavigationItem key={index} item={item} />;
               })}
             </div>
-            <Button toggle={toggle} />
+            <div className="">
+              <Button toggle={toggle} />
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +58,7 @@ const Button = ({ toggle }: { toggle: () => void }): JSX.Element => {
         height="40"
         viewBox="0 0 24 24"
       >
-        <path fill="#fff" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" />
+        <path fill="#054166" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" />
       </svg>
     </button>
   ) : (
