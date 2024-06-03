@@ -10,10 +10,10 @@ export default function Project({
   const project = PROJECTS.find((project) => project.id === id);
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-[#F3FAFF]">
+    <div className="flex flex-col bg-[#F3FAFF]">
       <ProjectInfo project={project!} />
-      <div className="flex flex-col px-4 gap-4 mt-10">
-        <PuncturesList punctures={project!.punctures} />
+      <div className="flex flex-col px-4 gap-4 mt-10 lg:px-[246px] justify-center">
+        <PuncturesList punctures={project!.punctures} projectId={project!.id} />
       </div>
     </div>
   );

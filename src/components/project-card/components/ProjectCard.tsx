@@ -18,15 +18,20 @@ export const ProjectCard = (properties: ProjectCardProperties) => {
   };
 
   return (
-    <div className="flex flex-row shadow-lg" onClick={handleProjectClick}>
+    <div
+      className="flex flex-row shadow-lg lg:h-[600px] lg:w-[600px] hover:shadow-xl cursor-pointer"
+      onClick={handleProjectClick}
+    >
       <div
         className={cn(
-          "flex flex-col px-2 py-3 gap-1 ",
+          "flex flex-col px-2 py-3 gap-1 lg:px-[54px] hover:bg-black/5",
           project.finished ? "bg-[#F3FAFF]" : "bg-white"
         )}
       >
-        <p className="font-medium">{project.title}</p>
-        <p className="text-[#054166] pl-4 text-[14px]">
+        <p className="font-medium lg:text-[30px] lg:mt-[40px]">
+          {project.title}
+        </p>
+        <p className="text-[#054166] pl-4 lg:pl-0 text-[14px] lg:mt-10 lg:text-[24px]">
           {shortenDescriptionText(project.description)}
         </p>
       </div>

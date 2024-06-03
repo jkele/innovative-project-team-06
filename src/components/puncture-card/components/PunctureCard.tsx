@@ -5,9 +5,10 @@ import { PunctureCardProperties } from "../types/puncture-card";
 import { PunctureDetailsDialog } from "@/components/puncture-details-dialog";
 import { ElementRef, useRef } from "react";
 import { useOpenCloseToggle } from "@/hooks/use-open-close-toggle";
+import Link from "next/link";
 
 export const PunctureCard = (properties: PunctureCardProperties) => {
-  const { puncture } = properties;
+  const { puncture, projectId } = properties;
 
   const shortenDescriptionText = (description: string) => {
     return description.substring(0, 120).concat("...");
@@ -26,19 +27,24 @@ export const PunctureCard = (properties: PunctureCardProperties) => {
 
   return (
     <>
-      <div className="flex flex-row shadow-lg" onClick={open}>
+      <Link
+        className="flex flex-row shadow-lg lg:h-[600px] lg:w-[600px]"
+        href={`/puncture/${projectId}/${puncture.id}`}
+      >
         <div
           className={cn(
-            "flex flex-col px-2 py-3 gap-1 ",
+            "flex flex-col px-2 py-3 gap-1 lg:px-[54px] hover:bg-black/5",
             puncture.finished ? "bg-[#F3FAFF]" : "bg-white"
           )}
         >
-          <p className="font-medium">{puncture.title}</p>
-          <p className="text-[#054166] text-[14px] pl-4">
+          <p className="font-medium lg:text-[30px] lg:mt-[40px]">
+            {puncture.title}
+          </p>
+          <p className="text-[#054166] pl-4 lg:pl-0 text-[14px] lg:mt-10 lg:text-[24px]">
             {shortenDescriptionText(puncture.description)}
           </p>
         </div>
-      </div>
+      </Link>
       <PunctureDetailsDialog
         modalReference={dialogReference}
         close={close}

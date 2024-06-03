@@ -4,7 +4,7 @@ export const Clipboard: FC<SVGAttributes<SVGElement>> = (properties) => (
   <svg
     width={22}
     height={22}
-    viewBox="0 0 22 22"
+    viewBox="0 0 74 74"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...properties}
@@ -12,7 +12,7 @@ export const Clipboard: FC<SVGAttributes<SVGElement>> = (properties) => (
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M14.5 0L22 7.5 7.5 22 0 14.5l3.043-3.043 2.75 2.75 1.414-1.414-2.75-2.75 2.086-2.086 2.75 2.75 1.414-1.414-2.75-2.75 2.086-2.086 2.75 2.75 1.414-1.414-2.75-2.75L14.5 0z"
+      d="M50.337.74H23.663v13.337h26.674V.74zM18.662 19.078V4.908H6.158V73.26h61.684V4.908H55.34v14.17H18.662z"
       fill="#054166"
     />
   </svg>
