@@ -13,7 +13,7 @@ export default function Project({
     <div className="flex flex-col bg-[#F3FAFF]">
       <ProjectInfo project={project!} />
       <div className="flex flex-col px-4 gap-4 mt-10 lg:px-[246px] justify-center">
-        <PuncturesList punctures={project!.punctures} />
+        <PuncturesList punctures={project!.punctures} projectId={project!.id} />
       </div>
     </div>
   );

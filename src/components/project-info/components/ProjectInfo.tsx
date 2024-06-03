@@ -1,12 +1,19 @@
 import { People } from "@/icons/People";
 import { ProjectInfoProperties } from "../types/project-info";
 import { Location } from "@/icons/Location";
+import Link from "next/link";
+import { Back } from "@/icons/Back";
 
 export const ProjectInfo = (properties: ProjectInfoProperties) => {
   const { project } = properties;
 
   return (
-    <div className="bg-white flex flex-col gap-4 py-10 text-black px-4 lg:px-[200px] shadow-lg">
+    <div className="bg-white flex flex-col gap-4 py-4 text-black px-4 lg:px-[200px] shadow-lg">
+      <div className="w-[60px] h-[50px]">
+        <Link href={"/dashboard"}>
+          <Back />
+        </Link>
+      </div>
       <p className="text-center font-semibold text-2xl lg:text-3xl">
         {project?.title}
       </p>

@@ -2,7 +2,7 @@ import { PunctureCard } from "@/components/puncture-card";
 import { PuncturesListProperties } from "../types/punctures-list";
 
 export const PuncturesList = (properties: PuncturesListProperties) => {
-  const { punctures } = properties;
+  const { punctures, projectId } = properties;
 
   return (
     <div className="flex flex-col gap-4">
@@ -15,7 +15,11 @@ export const PuncturesList = (properties: PuncturesListProperties) => {
       <p className="font-semibold text-2xl mt-4 text-center">Punctures</p>
       <div className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:justify-center">
         {punctures.map((puncture) => (
-          <PunctureCard key={puncture.id} puncture={puncture} />
+          <PunctureCard
+            key={puncture.id}
+            puncture={puncture}
+            projectId={projectId}
+          />
         ))}
       </div>
     </div>
