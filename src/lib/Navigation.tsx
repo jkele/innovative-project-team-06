@@ -6,6 +6,10 @@ export const NAV_ITEMS: NavItem[] = [
     path: "/",
   },
   {
+    title: "Dashboard",
+    path: "/dashboard",
+  },
+  {
     title: "About us",
     path: "#aboutus",
   },
