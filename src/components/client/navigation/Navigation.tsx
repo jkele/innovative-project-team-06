@@ -5,7 +5,6 @@ import Sidebar from "../../server/navigation/SideBar";
 import Link from "next/link";
 import { NavItem } from "@/types";
 
-
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
@@ -19,12 +18,12 @@ const Navigation = () => {
   );
 };
 
-export const NavigationItem = ({ item }: { item : NavItem}) => {
-    return (
-        <Link href={item.path} className=" hover:bg-gray-900 p-2 rounded-md">
-            <p>{item.title}</p>
-        </Link>
-    )
-}
+export const NavigationItem = ({ item }: { item: NavItem }) => {
+  return (
+    <Link href={item.path} className="p-2 rounded-md">
+      <p>{item.title}</p>
+    </Link>
+  );
+};
 
 export default Navigation;
