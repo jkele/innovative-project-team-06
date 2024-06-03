@@ -11,7 +11,7 @@ import { Logo } from "@/icons/Logo";
 const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element => {
   return (
     <>
-      <div className="w-full h-20 sticky top-0 bg-[#F3FAFF] shadow-lg z-50">
+      <div className="w-full h-20 sticky top-0 bg-[#F3FAFF] shadow-md z-50">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between items-center h-full">
             <Link href="/">

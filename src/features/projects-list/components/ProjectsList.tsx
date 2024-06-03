@@ -13,7 +13,7 @@ export const ProjectsList = (properties: ProjectsListProperties) => {
       <p className="text-[#5F8DAA] text-center lg:text-3xl font-semibold mt-10">
         Projects
       </p>
-      <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap mt-10">
+      <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap mt-10 lg:justify-center">
         {unfinishedProjects.map((project) => (
           <ProjectCard project={project} key={project.id} />
         ))}
@@ -24,7 +24,7 @@ export const ProjectsList = (properties: ProjectsListProperties) => {
       <p className="text-[#5F8DAA] text-center lg:text-3xl font-semibold mt-10">
         Finished projects
       </p>
-      <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap mt-10">
+      <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap mt-10 lg:justify-center">
         {finishedProjects.map((project) => (
           <ProjectCard project={project} key={project.id} />
         ))}
