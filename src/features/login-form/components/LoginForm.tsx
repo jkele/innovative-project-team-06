@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { LoginFormInput } from "../types/login-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
@@ -22,10 +23,10 @@ export const LoginForm = () => {
     }
   };
   return (
-    <div className="pt-[190px]">
+    <div className="flex flex-col pt-[190px]">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white h-[284px] flex flex-col px-4 gap-4"
+        className="bg-white h-[284px] flex flex-col px-4 gap-4 shadow-xl lg:px-[400px]"
       >
         <div className="flex flex-col mt-4">
           <input
@@ -59,6 +60,12 @@ export const LoginForm = () => {
           Log in
         </button>
       </form>
+      <Link
+        href={"/"}
+        className="self-end underline mr-[200px] mt-1 text-[#5F8DAA]"
+      >
+        or create account here
+      </Link>
     </div>
   );
 };
