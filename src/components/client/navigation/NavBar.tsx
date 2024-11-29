@@ -25,7 +25,7 @@ const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element => {
             <div className="">
               <Link
                 href={"/login"}
-                className="border border-[#054166] text-black font-semibold px-12 py-2"
+                className="border border-[#054166] text-black font-semibold px-12 py-2 hover:text-[#054166]"
               >
                 Sign in
               </Link>
@@ -34,42 +34,6 @@ const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element => {
         </div>
       </div>
     </>
-  );
-};
-
-const Button = ({ toggle }: { toggle: () => void }): JSX.Element => {
-  const [width, setWidth] = useState(0);
-
-  const updateWidth = () => {
-    const newWidth = window.innerWidth;
-    setWidth(newWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateWidth);
-    updateWidth();
-  }, []);
-
-  return width < 768 ? (
-    <button
-      type="button"
-      className="inline-flex items-center md:hidden cursor-pointer"
-      onClick={toggle}
-    >
-      {/* Menu icon */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-      >
-        <path fill="#054166" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" />
-      </svg>
-    </button>
-  ) : (
-    <div className=" cursor-pointer text-center items-center flex text-black h-12 rounded-lg bg-indigo-400 font-bold px-5">
-      <p>Sign In</p>
-    </div>
   );
 };
 

@@ -31,7 +31,7 @@ export const NavigationItem = ({ item }: { item: NavItem }) => {
   return (
     <Link
       href={item.path}
-      className="p-2 rounded-md"
+      className="p-2 rounded-md hover:text-[#054166]"
       onClick={handleClick}
       scroll={false}
     >
