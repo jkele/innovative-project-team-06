@@ -11,10 +11,14 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     title: "About us",
-    path: "#aboutus",
+    path: "#aboutUs",
   },
   {
     title: "Services",
     path: "#services",
+  },
+  {
+    title: "Contact us",
+    path: "#contactUs",
   },
 ];
