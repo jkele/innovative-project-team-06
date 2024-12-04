@@ -5,6 +5,7 @@ import { LoginFormInput } from "../types/login-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { setCookie } from "cookies-next";
 
 export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
@@ -17,7 +18,9 @@ export const LoginForm = () => {
     console.log(data);
 
     if (data.email === "test@mail.com" && data.password === "1234") {
-      router.push("/dashboard");
+      setCookie("user", "loggedIn");
+
+      window.location.href = "/dashboard";
     } else {
       setLoginError(true);
     }
