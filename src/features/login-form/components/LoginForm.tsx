@@ -62,7 +62,7 @@ export const LoginForm = () => {
         </button>
       </form>
       <Link
-        href={"/"}
+        href={"/create-account"}
         className="self-end underline mr-[200px] mt-1 text-[#5F8DAA]"
       >
         or create account here
