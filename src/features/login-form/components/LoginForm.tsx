@@ -56,7 +56,7 @@ export const LoginForm = () => {
         ) : null}
         <button
           type="submit"
-          className="text-black mt-4 justify-end uppercase font-semibold text-[18px]"
+          className="text-black mt-4 justify-end uppercase font-semibold text-[18px] hover:text-[#054166]"
         >
           Log in
         </button>
