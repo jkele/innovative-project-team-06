@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { LoginFormInput } from "../types/login-form";
+import { LoginFormInput, LoginResponse } from "../types/login-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { setCookie } from "cookies-next";
+import wretch from "wretch";
 
 export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
@@ -14,13 +15,26 @@ export const LoginForm = () => {
 
   const router = useRouter();
 
-  const onSubmit = (data: LoginFormInput) => {
-    console.log(data);
+  const onSubmit = async (data: LoginFormInput) => {
+    const loginRequestBody = {
+      email: data.email,
+      password: data.password,
+    };
 
-    if (data.email === "test@mail.com" && data.password === "1234") {
+    const loginResponse = await wretch("https://localhost:7074/api/login")
+      .headers({
+        "Content-Type": "application/json",
+      })
+      .body(JSON.stringify(loginRequestBody))
+      .post()
+      .json<LoginResponse>();
+
+    console.log(loginResponse);
+
+    if (loginResponse.message === "Login successful.") {
       setCookie("user", "loggedIn");
 
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
     } else {
       setLoginError(true);
     }
