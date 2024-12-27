@@ -1,11 +1,40 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import wretch from "wretch";
+import { RegisterResponse } from "../types/create-account-form";
+import { useState } from "react";
 
-export const CreateAccountForm = () => {
+export const CreateAccountForm = async () => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data: any) => {
+  const [errorState, setErrorState] = useState(false);
+
+  const router = useRouter();
+
+  const onSubmit = async (data: any) => {
     console.log(data);
+
+    const registerRequestBody = {
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+    };
+
+    const registerResponse = await wretch("https://localhost:7074/api/register")
+      .headers({
+        "Content-Type": "application/json",
+      })
+      .body(JSON.stringify(registerRequestBody))
+      .post()
+      .json<RegisterResponse>();
+
+    if (registerResponse.message === "User registered successfully.") {
+      router.push("/login");
+    } else {
+      setErrorState(true);
+    }
   };
 
   return (
@@ -18,7 +47,7 @@ export const CreateAccountForm = () => {
           <input
             className="text-black h-10 border-b border-[#5F8DAA] p-2"
             type="text"
-            {...register("firstName")}
+            {...register("firstName", { required: true })}
           />
           <label>
             <p className="font-medium text-[#5F8DAA]">First Name</p>
@@ -28,7 +57,7 @@ export const CreateAccountForm = () => {
           <input
             className="text-black h-10 border-b border-[#5F8DAA] p-2"
             type="text"
-            {...register("lastName")}
+            {...register("lastName", { required: true })}
           />
           <label>
             <p className="font-medium text-[#5F8DAA]">Last Name</p>
@@ -38,7 +67,7 @@ export const CreateAccountForm = () => {
           <input
             className="text-black h-10 border-b border-[#5F8DAA] p-2"
             type="email"
-            {...register("email")}
+            {...register("email", { required: true })}
           />
           <label>
             <p className="font-medium text-[#5F8DAA]">Email</p>
@@ -48,7 +77,7 @@ export const CreateAccountForm = () => {
           <input
             className="text-black h-10 border-b border-[#5F8DAA] p-2"
             type="password"
-            {...register("password")}
+            {...register("password", { required: true })}
           />
           <label>
             <p className="font-medium text-[#5F8DAA]">Password</p>
@@ -58,7 +87,7 @@ export const CreateAccountForm = () => {
           <input
             className="text-black h-10 border-b border-[#5F8DAA] p-2"
             type="password"
-            {...register("confirmPassword")}
+            {...register("confirmPassword", { required: true })}
           />
           <label>
             <p className="font-medium text-[#5F8DAA]">Confirm Password</p>
@@ -70,6 +99,11 @@ export const CreateAccountForm = () => {
         >
           Create Account
         </button>
+        {errorState ? (
+          <p className="text-red-500 mb-2 text-center">
+            Error creating account
+          </p>
+        ) : null}
       </form>
     </div>
   );
