@@ -2,21 +2,43 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-
-interface AddProjectFormFields {
-  title: string;
-  description: string;
-  finished: boolean;
-  street: string;
-}
+import {
+  AddProjectFormFields,
+  CreateProjectResponse,
+} from "../types/add-project-form";
+import { getCookie } from "cookies-next";
+import { User } from "@/types/user";
+import wretch from "wretch";
 
 export const AddProjectForm = () => {
   const { register, handleSubmit } = useForm<AddProjectFormFields>();
   const router = useRouter();
 
-  const onSubmit = (data: AddProjectFormFields) => {
-    console.log(data);
-    router.back();
+  const userCookieStr = getCookie("user");
+  const userCookie = userCookieStr
+    ? (JSON.parse(userCookieStr as string) as User)
+    : null;
+
+  const onSubmit = async (data: AddProjectFormFields) => {
+    const createProjectRequestBody = {
+      title: data.title,
+      description: data.description,
+      userId: userCookie?.userId,
+    };
+
+    const createProjectResponse = await wretch(
+      "https://localhost:7074/api/project"
+    )
+      .headers({
+        "Content-Type": "application/json",
+      })
+      .body(JSON.stringify(createProjectRequestBody))
+      .post()
+      .json<CreateProjectResponse>();
+
+    if (createProjectResponse.message === "Project created successfully.") {
+      router.push("/dashboard");
+    }
   };
 
   return (

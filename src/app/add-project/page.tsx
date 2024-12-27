@@ -1,3 +1,5 @@
+"use client";
+
 import { AddProjectForm } from "@/features/add-project-form";
 import { getCookie } from "cookies-next";
 import { useEffect } from "react";
