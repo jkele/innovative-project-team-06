@@ -1,6 +1,10 @@
+"use client";
+
 import { ProjectInfo } from "@/components/project-info";
 import { PROJECTS } from "@/constants/projects";
 import { PuncturesList } from "@/features/punctures-list";
+import { getCookie } from "cookies-next";
+import { useEffect } from "react";
 
 export default function Project({
   params: { id },
@@ -8,6 +12,14 @@ export default function Project({
   params: { id: string };
 }) {
   const project = PROJECTS.find((project) => project.id === id);
+
+  useEffect(() => {
+    const userCookie = getCookie("user");
+
+    if (!userCookie) {
+      window.location.href = "/";
+    }
+  }, []);
 
   return (
     <div className="flex flex-col bg-[#F3FAFF]">

@@ -5,4 +5,5 @@ export type LoginFormInput = {
 
 export type LoginResponse = {
   message: string;
+  userId: number;
 };

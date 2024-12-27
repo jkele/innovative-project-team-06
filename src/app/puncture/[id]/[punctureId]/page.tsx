@@ -1,3 +1,5 @@
+"use client";
+
 import { PunctureImages } from "@/components/puncture-images";
 import { PunctureInfo } from "@/components/puncture-info";
 import { PROJECTS } from "@/constants/projects";
@@ -7,7 +9,9 @@ import { Deadline } from "@/icons/Deadline";
 import { Location } from "@/icons/Location";
 import { Measurement } from "@/icons/Measurement";
 import { People } from "@/icons/People";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function Puncture({
   params: { id, punctureId },
@@ -19,6 +23,14 @@ export default function Puncture({
   const puncture = project?.punctures.find(
     (puncture) => puncture.id === punctureId
   );
+
+  useEffect(() => {
+    const userCookie = getCookie("user");
+
+    if (!userCookie) {
+      window.location.href = "/";
+    }
+  }, []);
 
   return (
     <div className="flex flex-col bg-[#F3FAFF]">

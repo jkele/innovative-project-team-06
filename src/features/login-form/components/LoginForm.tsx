@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { LoginFormInput, LoginResponse } from "../types/login-form";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { setCookie } from "cookies-next";
@@ -12,8 +11,6 @@ export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormInput>();
 
   const [loginError, setLoginError] = useState(false);
-
-  const router = useRouter();
 
   const onSubmit = async (data: LoginFormInput) => {
     const loginRequestBody = {
@@ -29,12 +26,10 @@ export const LoginForm = () => {
       .post()
       .json<LoginResponse>();
 
-    console.log(loginResponse);
-
     if (loginResponse.message === "Login successful.") {
-      setCookie("user", "loggedIn");
+      setCookie("user", JSON.stringify({ userId: loginResponse.userId }));
 
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
     } else {
       setLoginError(true);
     }
