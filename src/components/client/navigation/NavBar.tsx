@@ -1,17 +1,18 @@
 "use client";
-import React from "react";
 import Link from "next/link";
-import { NavItem } from "@/types";
-import { useEffect, useState } from "react";
 import { NAV_ITEMS } from "@/lib/Navigation";
-import { ImTelegram } from "react-icons/im";
 import { NavigationItem } from "./Navigation";
 import { Logo } from "@/icons/Logo";
-import { getCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import { useIsClient } from "@/hooks/use-is-client";
 
 const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element | null => {
   const userCookie = getCookie("user");
+
+  const handleLogOut = () => {
+    deleteCookie("user");
+    window.location.href = "/";
+  };
 
   const isClient = useIsClient();
 
@@ -30,14 +31,25 @@ const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element | null => {
                 );
               })}
             </div>
-            <div className="">
-              <Link
-                href={"/login"}
-                className="border border-[#054166] text-black font-semibold px-12 py-2 hover:text-[#054166]"
-              >
-                Sign in
-              </Link>
-            </div>
+            {userCookie ? (
+              <div className="">
+                <button
+                  onClick={handleLogOut}
+                  className="border border-[#054166] text-black font-semibold px-12 py-2 hover:text-[#054166]"
+                >
+                  Log out
+                </button>
+              </div>
+            ) : (
+              <div className="">
+                <Link
+                  href={"/login"}
+                  className="border border-[#054166] text-black font-semibold px-12 py-2 hover:text-[#054166]"
+                >
+                  Sign in
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
