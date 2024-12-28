@@ -14,7 +14,7 @@ export const ProjectCard = (properties: ProjectCardProperties) => {
   };
 
   const handleProjectClick = () => {
-    router.push(`/project/${project.id}`);
+    router.push(`/project/${project.projectId}`);
   };
 
   return (
@@ -24,7 +24,7 @@ export const ProjectCard = (properties: ProjectCardProperties) => {
     >
       <div
         className={cn(
-          "flex flex-col px-2 py-3 gap-1 lg:px-[54px] hover:bg-black/5",
+          "flex flex-col px-2 py-3 gap-1 lg:px-[54px] w-full hover:bg-black/5",
           project.finished ? "bg-[#F3FAFF]" : "bg-white"
         )}
       >

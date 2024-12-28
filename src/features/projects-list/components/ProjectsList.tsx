@@ -23,7 +23,7 @@ export const ProjectsList = (properties: ProjectsListProperties) => {
       </p>
       <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap mt-10 lg:justify-center">
         {unfinishedProjects.map((project) => (
-          <ProjectCard project={project} key={project.id} />
+          <ProjectCard project={project} key={project.projectId} />
         ))}
       </div>
       <button
@@ -37,7 +37,7 @@ export const ProjectsList = (properties: ProjectsListProperties) => {
       </p>
       <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap mt-10 lg:justify-center">
         {finishedProjects.map((project) => (
-          <ProjectCard project={project} key={project.id} />
+          <ProjectCard project={project} key={project.projectId} />
         ))}
       </div>
     </div>

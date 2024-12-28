@@ -1,4 +1,4 @@
-import { Project } from "@/types/project";
+import { TestProject } from "@/types/project";
 
 export const PROJECTS = [
   {
@@ -122,4 +122,4 @@ export const PROJECTS = [
       },
     ],
   },
-] as Project[];
+] as TestProject[];

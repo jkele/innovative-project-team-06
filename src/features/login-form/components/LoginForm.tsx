@@ -18,19 +18,23 @@ export const LoginForm = () => {
       password: data.password,
     };
 
-    const loginResponse = await wretch("https://localhost:7074/api/login")
-      .headers({
-        "Content-Type": "application/json",
-      })
-      .body(JSON.stringify(loginRequestBody))
-      .post()
-      .json<LoginResponse>();
+    try {
+      const loginResponse = await wretch("https://localhost:7074/api/login")
+        .headers({
+          "Content-Type": "application/json",
+        })
+        .body(JSON.stringify(loginRequestBody))
+        .post()
+        .json<LoginResponse>();
 
-    if (loginResponse.message === "Login successful.") {
-      setCookie("user", JSON.stringify({ userId: loginResponse.userId }));
+      if (loginResponse.message === "Login successful.") {
+        setCookie("user", JSON.stringify({ userId: loginResponse.userId }));
 
-      window.location.href = "/dashboard";
-    } else {
+        window.location.href = "/dashboard";
+      } else {
+        setLoginError(true);
+      }
+    } catch {
       setLoginError(true);
     }
   };

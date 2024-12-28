@@ -1,5 +1,5 @@
-import { Project } from "@/types/project";
+import { TestProject } from "@/types/project";
 
 export type ProjectInfoProperties = {
-  project: Project;
+  project: TestProject;
 };

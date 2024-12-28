@@ -1,4 +1,4 @@
-import { Project } from "@/types/project";
+import { TestProject } from "@/types/project";
 import { Puncture } from "@/types/puncture";
 import { ElementRef, RefObject } from "react";
 
