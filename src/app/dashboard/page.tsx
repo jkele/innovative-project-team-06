@@ -38,8 +38,6 @@ export default function Dashboard() {
     }
   }, [user?.userId]);
 
-  console.log(projects);
-
   return (
     <div className="flex flex-col bg-[rgb(243,250,255)] px-10">
       {projects ? (

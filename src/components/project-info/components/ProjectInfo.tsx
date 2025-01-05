@@ -19,10 +19,10 @@ export const ProjectInfo = (properties: ProjectInfoProperties) => {
       </p>
       <p className="mt-10 lg:text-xl">{project?.description}</p>
       <div className="flex flex-row justify-between px-6 lg:px-60">
-        <div className="flex flex-row gap-2 mt-5">
+        {/* <div className="flex flex-row gap-2 mt-5">
           <Location className="self-center" />
           <p className="self-center font-semibold">{project?.street}</p>
-        </div>
+        </div> */}
         <div className="flex flex-row gap-2 mt-5">
           <People className="self-center" />
           <p className="self-center font-semibold">John Doe</p>
