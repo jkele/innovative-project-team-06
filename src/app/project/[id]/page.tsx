@@ -15,6 +15,7 @@ export default function Project({
 }) {
   const [project, setProject] = useState<Project>();
   const [user, setUser] = useState<User>();
+  const [projectPunctures, setProjectPunctures] = useState();
 
   useEffect(() => {
     const userCookie = getCookie("user");
@@ -46,14 +47,31 @@ export default function Project({
     }
   }, [id, user?.userId]);
 
-  console.log("Project", project);
+  useEffect(() => {
+    const fetchProjectPunctures = async () => {
+      const puncturesResponse = await wretch(
+        `https://localhost:7074/api/puncture/project/${project?.projectId}`
+      )
+        .get()
+        .json();
+
+      setProjectPunctures(puncturesResponse);
+    };
+
+    if (project) {
+      fetchProjectPunctures();
+    }
+  }, [project]);
 
   return (
     <div className="flex flex-col bg-[#F3FAFF]">
       <ProjectInfo project={project!} />
-      {/* <div className="flex flex-col px-4 gap-4 mt-10 lg:px-[246px] justify-center">
-        <PuncturesList punctures={project!.punctures} projectId={project!.id} />
-      </div> */}
+      <div className="flex flex-col px-4 gap-4 mt-10 lg:px-[246px] justify-center">
+        <PuncturesList
+          punctures={projectPunctures}
+          projectId={project?.projectId}
+        />
+      </div>
     </div>
   );
 }

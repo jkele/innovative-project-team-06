@@ -1,3 +1,5 @@
+"use client";
+
 import { AddPunctureForm } from "@/features/add-puncture-form";
 import { getCookie } from "cookies-next";
 import { useEffect } from "react";
