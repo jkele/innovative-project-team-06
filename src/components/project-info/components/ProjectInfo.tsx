@@ -1,3 +1,4 @@
+"use client";
 import { People } from "@/icons/People";
 import { ProjectInfoProperties, User } from "../types/project-info";
 import { Location } from "@/icons/Location";
@@ -5,11 +6,14 @@ import Link from "next/link";
 import { Back } from "@/icons/Back";
 import { useEffect, useState } from "react";
 import wretch from "wretch";
+import { useRouter } from "next/navigation";
 
 export const ProjectInfo = (properties: ProjectInfoProperties) => {
   const { project } = properties;
 
   const [user, setUser] = useState<User>();
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -27,12 +31,41 @@ export const ProjectInfo = (properties: ProjectInfoProperties) => {
     }
   }, [project]);
 
+  const handleToggle = async (projectId: number) => {
+    try {
+      const response = await wretch(
+        `https://localhost:7074/api/project/${projectId}/toggle-finished`
+      )
+        .patch()
+        .json();
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error toggling project status:", error);
+    }
+  };
+
+  if (!project) {
+    return null;
+  }
+
   return (
     <div className="bg-white flex flex-col gap-4 py-4 text-black px-4 lg:px-[200px] shadow-lg">
-      <div className="w-[60px] h-[50px]">
-        <Link href={"/dashboard"}>
-          <Back />
-        </Link>
+      <div className="flex flex-row justify-between">
+        <div className="w-[60px] h-[50px]">
+          <Link href={"/dashboard"}>
+            <Back />
+          </Link>
+        </div>
+        <label className="flex flex-row self-center gap-2">
+          <input
+            className="w-6 h-6 text-blue-600 bg-gray-200 rounded focus:ring-blue-500 focus:ring-2"
+            type="checkbox"
+            checked={project.finished}
+            onChange={() => handleToggle(project.projectId)}
+          />
+          {project.finished ? "Finished" : "Unfinished"}
+        </label>
       </div>
       <p className="text-center font-semibold text-2xl lg:text-3xl">
         {project?.title}
