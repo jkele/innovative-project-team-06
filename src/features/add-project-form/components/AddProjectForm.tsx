@@ -24,6 +24,7 @@ export const AddProjectForm = () => {
       title: data.title,
       description: data.description,
       userId: userCookie?.userId,
+      street: data.street,
     };
 
     const createProjectResponse = await wretch(

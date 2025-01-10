@@ -15,4 +15,5 @@ export type Project = {
   description: string;
   userId: number;
   finished: boolean;
+  street: string;
 };

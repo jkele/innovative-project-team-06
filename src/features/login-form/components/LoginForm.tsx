@@ -47,7 +47,7 @@ export const LoginForm = () => {
       >
         <div className="flex flex-col mt-4">
           <input
-            className="text-black h-10 border-b border-[#5F8DAA]"
+            className="text-black h-10 p-2 border-b border-[#5F8DAA]"
             type="text"
             {...register("email")}
           />
@@ -57,7 +57,7 @@ export const LoginForm = () => {
         </div>
         <div className="flex flex-col">
           <input
-            className="text-black h-10 border-b border-[#5F8DAA]"
+            className="text-black h-10 p-2 border-b border-[#5F8DAA]"
             type="password"
             {...register("password")}
           />
