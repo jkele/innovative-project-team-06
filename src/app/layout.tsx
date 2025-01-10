@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/client/navigation/Navigation";
+import { NuqsAdapter } from "nuqs/adapters/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,14 @@ export default function RootLayout({
       <head>
         <title>StructSure</title>
       </head>
-      <body>
-        <main>
-          <Navigation />
-          {children}
-        </main>
-      </body>
+      <NuqsAdapter>
+        <body>
+          <main>
+            <Navigation />
+            {children}
+          </main>
+        </body>
+      </NuqsAdapter>
     </html>
   );
 }

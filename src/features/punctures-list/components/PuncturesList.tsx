@@ -2,6 +2,7 @@
 import { PunctureCard } from "@/components/puncture-card";
 import { PuncturesListProperties } from "../types/punctures-list";
 import { useRouter } from "next/navigation";
+import { Puncture } from "@/types/puncture";
 
 export const PuncturesList = (properties: PuncturesListProperties) => {
   const { punctures, projectId } = properties;
@@ -9,7 +10,7 @@ export const PuncturesList = (properties: PuncturesListProperties) => {
   const router = useRouter();
 
   const handleAddPunctureClick = () => {
-    router.push("/add");
+    router.push("/add?projectId=1");
   };
 
   return (
@@ -24,11 +25,11 @@ export const PuncturesList = (properties: PuncturesListProperties) => {
       <p className="font-semibold text-2xl mt-4 text-center">Punctures</p>
       <div className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:justify-center">
         {punctures
-          ? punctures.map((puncture) => (
+          ? punctures.map((puncture: Puncture) => (
               <PunctureCard
-                key={puncture.id}
+                key={puncture.punctureId}
                 puncture={puncture}
-                projectId={projectId}
+                projectId={puncture.projectId}
               />
             ))
           : null}

@@ -1,6 +1,6 @@
 import { Puncture } from "@/types/puncture";
 
 export type PunctureCardProperties = {
-  projectId: string;
+  projectId: number;
   puncture: Puncture;
 };

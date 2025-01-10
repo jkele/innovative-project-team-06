@@ -1,8 +1,11 @@
 export type Puncture = {
-  id: string;
-  title: string;
+  punctureId: number;
+  projectId: number;
+  name: string;
   description: string;
-  finished: boolean;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
+  depth: number;
+  location: string;
+  images: string;
 };

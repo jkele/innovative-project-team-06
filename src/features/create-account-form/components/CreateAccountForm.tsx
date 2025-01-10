@@ -13,8 +13,6 @@ export const CreateAccountForm = async () => {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-
     const registerRequestBody = {
       email: data.email,
       password: data.password,
