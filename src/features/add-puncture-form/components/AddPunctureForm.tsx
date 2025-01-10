@@ -15,9 +15,17 @@ export const AddPunctureForm = () => {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    const image = await toBase64(data.image[0] as unknown as File).then(
-      (res: any) => res.split(",")[1]
+    if (!data.image || data.image.length === 0) {
+      alert("Please upload at least one image.");
+      return;
+    }
+
+    const imagePromises = (Array.from(data.image) as File[]).map((file: File) =>
+      toBase64(file).then((res: any) => res.split(",")[1])
     );
+
+    const images = await Promise.all(imagePromises);
+    const imagesString = images.join("|");
 
     const newPuncture = {
       name: data.name,
@@ -27,7 +35,7 @@ export const AddPunctureForm = () => {
       height: data.height,
       depth: data.depth,
       location: data.location,
-      images: image,
+      images: imagesString,
     };
 
     const response = await wretch("https://localhost:7074/api/puncture")
@@ -111,6 +119,7 @@ export const AddPunctureForm = () => {
           {...register("image", { required: true })}
           type="file"
           accept=".png,.jpg,.jpeg,.img"
+          multiple
         />
         <button
           type="submit"

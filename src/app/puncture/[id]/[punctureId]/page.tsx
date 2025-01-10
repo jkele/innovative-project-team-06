@@ -45,13 +45,16 @@ export default function Puncture({
   return (
     <div className="flex flex-col bg-[#F3FAFF]">
       <PunctureInfo projectId={Number(id)} puncture={puncture!} />
-      <div className="flex flex-row self-center mt-6">
-        <Image
-          src={`data:image/jpg;base64,${puncture?.images}`}
-          alt=""
-          width={600}
-          height={400}
-        />
+      <div className="flex flex-row flex-wrap justify-center gap-6 self-center mt-6">
+        {puncture?.images.split("|").map((image) => (
+          <Image
+            key={image}
+            src={`data:image/jpg;base64,${image}`}
+            alt=""
+            width={600}
+            height={400}
+          />
+        ))}
       </div>
       <div className="flex flex-col gap-4 mt-10 mx-auto">
         <div className="flex flex-row gap-6">

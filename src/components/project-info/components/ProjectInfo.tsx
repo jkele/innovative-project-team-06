@@ -45,6 +45,19 @@ export const ProjectInfo = (properties: ProjectInfoProperties) => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await wretch(`https://localhost:7074/api/project/${project.projectId}`)
+        .delete()
+        .res();
+
+      router.back();
+    } catch (error) {
+      console.error("Error deleting project:", error);
+      alert("Failed to delete project. Please try again.");
+    }
+  };
+
   if (!project) {
     return null;
   }
@@ -57,15 +70,23 @@ export const ProjectInfo = (properties: ProjectInfoProperties) => {
             <Back />
           </Link>
         </div>
-        <label className="flex flex-row self-center gap-2">
-          <input
-            className="w-6 h-6 text-blue-600 bg-gray-200 rounded focus:ring-blue-500 focus:ring-2"
-            type="checkbox"
-            checked={project.finished}
-            onChange={() => handleToggle(project.projectId)}
-          />
-          {project.finished ? "Finished" : "Unfinished"}
-        </label>
+        <div className="flex flex-row gap-4">
+          <label className="flex flex-row self-center gap-2">
+            <input
+              className="w-6 h-6 text-blue-600 bg-gray-200 rounded focus:ring-blue-500 focus:ring-2"
+              type="checkbox"
+              checked={project.finished}
+              onChange={() => handleToggle(project.projectId)}
+            />
+            {project.finished ? "Finished" : "Unfinished"}
+          </label>
+          <button
+            onClick={handleDelete}
+            className="bg-red-500 text-white h-10 self-center leading-none px-4 rounded-md hover:bg-red-600"
+          >
+            Delete
+          </button>
+        </div>
       </div>
       <p className="text-center font-semibold text-2xl lg:text-3xl">
         {project?.title}

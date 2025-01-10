@@ -10,7 +10,7 @@ export const PuncturesList = (properties: PuncturesListProperties) => {
   const router = useRouter();
 
   const handleAddPunctureClick = () => {
-    router.push("/add?projectId=1");
+    router.push(`/add?projectId=${projectId}`);
   };
 
   return (

@@ -66,11 +66,8 @@ export default function Project({
   return (
     <div className="flex flex-col bg-[#F3FAFF]">
       <ProjectInfo project={project!} />
-      <div className="flex flex-col px-4 gap-4 mt-10 lg:px-[246px] justify-center">
-        <PuncturesList
-          punctures={projectPunctures}
-          projectId={project?.projectId}
-        />
+      <div className="flex flex-col px-4 gap-4 h-[500px] mt-10 lg:px-[246px] justify-center">
+        <PuncturesList punctures={projectPunctures} projectId={Number(id)} />
       </div>
     </div>
   );
