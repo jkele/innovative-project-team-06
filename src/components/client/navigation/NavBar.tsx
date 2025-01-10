@@ -7,6 +7,8 @@ import { Logo } from "@/icons/Logo";
 import { deleteCookie, getCookie } from "cookies-next";
 import { useIsClient } from "@/hooks/use-is-client";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import useNavigation from "@/hooks/use-navigation";
+import { NavItem } from "@/types";
 
 const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element | null => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,6 +26,17 @@ const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element | null => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleNavigation = useNavigation();
+
+  const handleClick = (e: React.MouseEvent, item: NavItem) => {
+    e.preventDefault();
+    handleNavigation(item.path);
+
+    setTimeout(() => {
+      toggleMobileMenu();
+    }, 400);
+  };
+
   return isClient ? (
     <>
       <div className="w-full h-20 sticky top-0 bg-[#F3FAFF] shadow-md z-50">
@@ -35,7 +48,11 @@ const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element | null => {
             <div className="hidden md:flex gap-x-6 text-black">
               {NAV_ITEMS.map((item, index) => {
                 return item.title === "Dashboard" && !userCookie ? null : (
-                  <NavigationItem key={index} item={item} />
+                  <NavigationItem
+                    key={index}
+                    item={item}
+                    handleClick={handleClick}
+                  />
                 );
               })}
             </div>
@@ -104,7 +121,11 @@ const Navbar = ({ toggle }: { toggle: () => void }): JSX.Element | null => {
           <div className="container mx-auto px-4 py-8 flex flex-col gap-6">
             {NAV_ITEMS.map((item, index) =>
               item.title === "Dashboard" && !userCookie ? null : (
-                <NavigationItem key={index} item={item} />
+                <NavigationItem
+                  key={index}
+                  item={item}
+                  handleClick={handleClick}
+                />
               )
             )}
 

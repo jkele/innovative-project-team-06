@@ -10,7 +10,6 @@ const useNavigation = (offset = 160) => {
       if (path.startsWith("#")) {
         const elementId = path.slice(1);
 
-        // Scroll on the same page
         const element = document.getElementById(elementId);
         if (element) {
           const scrollPosition = element.offsetTop - offset;
@@ -21,10 +20,8 @@ const useNavigation = (offset = 160) => {
           return;
         }
 
-        // If the element is not found (possibly on another page), navigate
         await router.push(`/#${elementId}`);
       } else {
-        // Navigate to other pages
         router.push(path);
       }
     },

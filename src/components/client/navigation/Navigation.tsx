@@ -20,19 +20,20 @@ const Navigation = () => {
   );
 };
 
-export const NavigationItem = ({ item }: { item: NavItem }) => {
-  const handleNavigation = useNavigation();
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    handleNavigation(item.path);
-  };
-
+export const NavigationItem = ({
+  item,
+  handleClick,
+}: {
+  item: NavItem;
+  handleClick: (e: React.MouseEvent, item: NavItem) => void;
+}) => {
   return (
     <Link
       href={item.path}
       className="p-2 rounded-md hover:text-[#054166]"
-      onClick={handleClick}
+      onClick={(e) => {
+        handleClick(e, item);
+      }}
       scroll={false}
     >
       <p>{item.title}</p>
